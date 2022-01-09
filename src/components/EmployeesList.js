@@ -92,8 +92,8 @@ function EmployeesList () {
         <FlatList data={employees} keyExtractor={item => {item.phone}} ItemSeparatorComponent={ListItemSperator} 
                   onEndReached={() => {setPage(page + 1)}} ListFooterComponent={renderLoader}
                   //refreshing={refresh} onRefresh={setRefresh(true)}                
-                renderItem={({item}) => {<ListItem name={item.name} email={item.email} phone={item.phone} 
-                                                  image={item.image} onPress={() =>navigation.navigate("DetailsScreen",item) }/>}}/>
+                renderItem={({item}) => (<ListItem name={item.name} email={item.email} phone={item.phone} 
+                                                  image={item.image} onPress={() =>navigation.navigate("DetailsScreen",item) }/>)}/>
         <AppButton title="Add" style={styles.addButton} onPress={() => {navigation.navigate("AddEmpScreen")}}/>
        </SafeAreaView>      
                                                         

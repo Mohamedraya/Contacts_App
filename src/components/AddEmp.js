@@ -125,17 +125,14 @@ export default function AddEmp() {
 
     const imageName = image.substring(image.lastIndexOf('/') + 1);
     const storageRef = ref(storage,'image/' + imageName);
-    const uploadTask = uploadBytes(storageRef, blob);
-    
-    uploadTask.then((snapshot) => {
-      console.log('Uploaded ' + name);});
+    uploadBytes(storageRef, blob).then((snapshot) => {
+      console.log('Uploaded ');});
 
-    getDownloadURL(snapshot.ref).then((downloadURL) => {
+    getDownloadURL(storageRef).then((downloadURL) => {
+
         console.log('File available at', downloadURL);
-    });
-
-    const docRef = (collection(db, "employees"));
-    const payload = {
+        const docRef = (collection(db, "employees"));
+        const payload = {
       name: getValues("name"),
       email: getValues("email"),
       phone: getValues("phone"),
@@ -143,6 +140,9 @@ export default function AddEmp() {
       image: downloadURL,
     };
     addDoc(docRef, payload);
+    });
+
+    
     reset();
     navigation.goBack();
   }
